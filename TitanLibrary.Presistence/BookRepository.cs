@@ -2,14 +2,12 @@
 using Microsoft.Extensions.Configuration;
 using TitanLibrary.Presistence.Domain.Entities;
 using TitanLibrary.Presistence.Abstractions;
-using Microsoft.Extensions.Logging;
 
 namespace TitanLibrary.Presistence;
 
 public class BookRepository : IBookRepository
 {
     private readonly string _connectionString;
-    private readonly ILogger
 
     public BookRepository(IConfiguration configuration)
     {
