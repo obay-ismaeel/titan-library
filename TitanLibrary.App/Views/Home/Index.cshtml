@@ -1,0 +1,19 @@
+﻿@{
+    ViewData["Title"] = "Home";
+}
+
+<div class="text-center">
+    @if (User.Identity.IsAuthenticated)
+    {
+        <h1 class="display-3">Welcome, @User.Identity.Name</h1>
+    }
+    else
+    {
+        <h1 class="display-3">Welcome</h1>
+        <p>
+            Please <a asp-area="" asp-controller="Account" asp-action="Login">Login</a> 
+            or <a asp-area="" asp-controller="Account" asp-action="Register">Register</a>
+            to browse and borrow from our library
+        </p>
+    }
+</div>

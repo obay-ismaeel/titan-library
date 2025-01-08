@@ -1,0 +1,65 @@
+﻿@model IEnumerable<TitanLibrary.Presistence.Domain.Entities.Book>
+
+@{
+    ViewData["Title"] = "Books";
+}
+
+<form method="get" asp-controller="Books" asp-action="Search" class="d-flex flex-wrap align-items-center p-3 border rounded shadow-sm">
+    <input class="form-control me-2 mb-2 flex-grow-1"
+           type="text"
+           name="title"
+           placeholder="Title search"
+           value="@ViewBag.BookTitle" />
+    <input class="form-control me-2 mb-2 flex-grow-1"
+           type="text"
+           name="author"
+           placeholder="Author search"
+           value="@ViewBag.Author" />
+    <input class="form-control me-2 mb-2 flex-grow-1"
+           type="text"
+           name="isbn"
+           placeholder="ISBN Search (full number only)"
+           value="@ViewBag.Isbn" />
+    <button class="btn btn-primary mb-2"
+            type="submit">
+        Filter
+    </button>
+</form>
+
+<table class="table table-striped table-hover table-bordered align-middle">
+    <thead class="table-dark text-center">
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Title)</th>
+            <th>@Html.DisplayNameFor(model => model.Author)</th>
+            <th>@Html.DisplayNameFor(model => model.ISBN)</th>
+            <th>@Html.DisplayNameFor(model => model.Availability)</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.Title)</td>
+                <td>@Html.DisplayFor(modelItem => item.Author)</td>
+                <td>@Html.DisplayFor(modelItem => item.ISBN)</td>
+                <td>
+                    @{
+                        var available = item.Availability ?
+                        "<span class='badge bg-success'>Available</span>" :
+                        "<span class='badge bg-danger'>Checked Out</span>";
+                    }
+                    @Html.Raw(available)
+                </td>
+                <td>
+                    <a class="btn btn-primary btn-sm" asp-controller="Books" asp-action="Details" asp-route-id="@item.BookID">Show</a>
+                    @if (item.Availability)
+                    {
+                        <a class="btn btn-primary btn-sm" asp-controller="Books" asp-action="Borrow" asp-route-id="@item.BookID">Borrow</a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

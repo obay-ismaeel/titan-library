@@ -1,0 +1,45 @@
+﻿@model TitanLibrary.Presistence.Domain.Entities.Book
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="container mt-4 p-4 border rounded shadow-sm">
+    <h4 class="text-center mb-4">@Model.Title</h4>
+    <hr class="mb-4" />
+    <dl class="row">
+        <dt class="col-sm-3 fw-bold text-secondary">
+            @Html.DisplayNameFor(model => model.Author)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Author)
+        </dd>
+        <dt class="col-sm-3 fw-bold text-secondary">
+            @Html.DisplayNameFor(model => model.ISBN)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.ISBN)
+        </dd>
+        <dt class="col-sm-3 fw-bold text-secondary">
+            @Html.DisplayNameFor(model => model.PublishedYear)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.PublishedYear)
+        </dd>
+        <dt class="col-sm-3 fw-bold text-secondary">
+            @Html.DisplayNameFor(model => model.Genre)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Genre)
+        </dd>
+        <dt class="col-sm-3 fw-bold text-secondary">
+            @Html.DisplayNameFor(model => model.Availability)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Availability)
+        </dd>
+    </dl>
+</div>
+<div class="mt-3">
+    <a asp-action="Index" class="btn btn-outline-secondary">Back to List</a>
+</div>

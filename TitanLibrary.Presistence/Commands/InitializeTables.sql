@@ -1,0 +1,31 @@
+CREATE TABLE Books (
+    BookID INT IDENTITY(1,1) PRIMARY KEY,
+    Title NVARCHAR(255) NOT NULL,
+    Author NVARCHAR(255) NOT NULL,
+    ISBN NVARCHAR(13) NOT NULL UNIQUE,
+    PublishedYear INT NULL,
+    Genre NVARCHAR(100) NULL,
+    Availability BIT NOT NULL
+);
+
+CREATE TABLE Users (
+    UserID INT IDENTITY(1,1) PRIMARY KEY,
+    FirstName NVARCHAR(100) NOT NULL,
+    LastName NVARCHAR(100) NOT NULL,
+    Email NVARCHAR(255) NOT NULL UNIQUE,
+    PasswordHash NVARCHAR(255) NOT NULL,
+    PhoneNumber NVARCHAR(15) NULL,
+    MembershipDate DATE NOT NULL
+);
+
+CREATE TABLE Borrowings (
+    BorrowingID INT IDENTITY(1,1) PRIMARY KEY,
+    BookID INT NOT NULL,
+    UserID INT NOT NULL,
+    BorrowDate DATE NOT NULL,
+    ReturnDate DATE NULL,
+    CONSTRAINT FK_Borrowings_Books FOREIGN KEY (BookID) REFERENCES Books(BookID),
+    CONSTRAINT FK_Borrowings_Users FOREIGN KEY (UserID) REFERENCES Users(UserID)
+);
+
+
